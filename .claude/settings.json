@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" show 48bee4d --stat)",
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" log --all --oneline --format=\"%H %s\")",
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" log --all --oneline)",
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" add .planning/phases/01-foundation/01-04-SUMMARY.md)",
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" show HEAD:.planning/phases/01-foundation/01-01-SUMMARY.md --name-only)",
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" add -f .planning/phases/01-foundation/01-04-SUMMARY.md)",
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" status --short)",
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" commit --no-verify -m \"docs\\(01-04\\): execution summary — login page and auth flow\")",
+      "Bash(./node_modules/.bin/next build *)",
+      "Bash(git -C \"/Users/juancruzmagallanes/Documents/Claude/Programador:Desarrollador\" log --oneline -3)",
+      "Bash(node_modules/.bin/next build *)",
+      "Bash(node_modules/.bin/next --version)",
+      "Bash(node_modules/.bin/next dev *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(pkill -f \"next dev\")",
+      "Read(//tmp/**)",
+      "Bash(curl -s http://localhost:3000/api/debug-env)",
+      "Skill(gsd-quick)",
+      "Skill(gsd-quick:*)",
+      "Read(//Users/juancruzmagallanes/**)",
+      "Bash(python3 -m json.tool)"
+    ],
+    "additionalDirectories": [
+      "/Users/juancruzmagallanes/.claude/projects/-Users-juancruzmagallanes-Documents-Claude-Programador-Desarrollador/memory"
+    ]
+  }
+}

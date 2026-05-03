@@ -1,0 +1,11 @@
+node_modules/
+.next/
+dist/
+.DS_Store
+*.png
+*.jpg
+*.jpeg
+Software/
+capturas/
+apps/dashboard/.next/
+apps/dashboard/node_modules/

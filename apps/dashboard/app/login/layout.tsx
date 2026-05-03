@@ -1,0 +1,10 @@
+export default function LoginLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      className="flex min-h-screen items-center justify-center"
+      style={{ background: 'var(--bg)' }}
+    >
+      {children}
+    </div>
+  )
+}
