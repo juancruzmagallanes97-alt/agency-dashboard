@@ -28,22 +28,20 @@ export default async function Alertas() {
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-3 gap-3 mb-8">
+      <div className="grid grid-cols-3 gap-4 mb-8">
         {[
-          { label: 'Críticas', count: criticas.length, color: criticas.length > 0 ? 'var(--critical)' : 'var(--text-1)', accent: criticas.length > 0 },
-          { label: 'Warnings', count: warnings.length, color: warnings.length > 0 ? 'var(--warning)' : 'var(--text-1)', accent: false },
-          { label: 'Oportunidades', count: oportunidades.length, color: 'var(--opportunity)', accent: false },
+          { label: 'Críticas',      count: criticas.length,     accent: criticas.length > 0 ? 'var(--critical)'     : 'var(--border-2)', glow: criticas.length > 0 ? 'rgba(239,68,68,0.12)'   : 'transparent', numColor: criticas.length > 0 ? 'var(--critical)' : 'var(--text-1)' },
+          { label: 'Warnings',      count: warnings.length,     accent: warnings.length > 0 ? 'var(--warning)'      : 'var(--border-2)', glow: warnings.length > 0 ? 'rgba(234,179,8,0.10)'   : 'transparent', numColor: warnings.length > 0 ? 'var(--warning)' : 'var(--text-1)' },
+          { label: 'Oportunidades', count: oportunidades.length, accent: 'var(--opportunity)',                        glow: 'rgba(34,197,94,0.10)',                                              numColor: 'var(--opportunity)' },
         ].map((k, i) => (
-          <div
-            key={i}
-            className="rounded-lg p-5"
-            style={{
-              background: 'var(--surface-1)',
-              border: `1px solid ${k.accent ? 'rgba(232,64,64,0.3)' : 'var(--border)'}`,
-            }}
-          >
-            <div className="text-[11px] uppercase tracking-wide mb-3" style={{ color: 'var(--text-3)' }}>{k.label}</div>
-            <div className="text-3xl font-bold font-mono" style={{ color: k.color }}>{k.count}</div>
+          <div key={i} style={{ position: 'relative', borderRadius: 14, padding: '20px 24px 18px', background: 'var(--surface-1)', border: '1px solid var(--border)', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: k.accent, boxShadow: `0 0 10px ${k.glow}` }} />
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: `radial-gradient(ellipse at 30% 0%, ${k.glow} 0%, transparent 70%)`, pointerEvents: 'none' }} />
+            <div style={{ position: 'relative' }}>
+              <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--text-3)', fontWeight: 600, marginBottom: 16 }}>{k.label}</div>
+              <div style={{ fontSize: 48, fontWeight: 800, fontFamily: 'monospace', lineHeight: 1, letterSpacing: '-0.03em', color: k.numColor, textShadow: `0 0 24px ${k.glow}` }}>{k.count}</div>
+              <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 10 }}>activa{k.count !== 1 ? 's' : ''}</div>
+            </div>
           </div>
         ))}
       </div>

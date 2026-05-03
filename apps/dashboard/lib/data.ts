@@ -89,7 +89,7 @@ export const clientes: Cliente[] = [
     canales: ['whatsapp', 'instagram'],
     ghlUrl: 'https://app.gohighlevel.com',
     n8nBase: N8N,
-    bot: 'Vicky',
+    bot: undefined,
     sucursales: ['Villanueva', 'Benavídez'],
     workflows: [
       {

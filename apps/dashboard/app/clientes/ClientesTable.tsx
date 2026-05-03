@@ -18,11 +18,11 @@ const filtros: { value: FilterEstado; label: string }[] = [
 ]
 
 const AVATAR_COLORS = [
-  { from: '#2383E2', to: '#1563C0' },
-  { from: '#34D399', to: '#059669' },
-  { from: '#F97316', to: '#C2410C' },
+  { from: '#4B7BF5', to: '#2550C0' },
+  { from: '#00E87A', to: '#00A855' },
+  { from: '#FF6B35', to: '#C2410C' },
   { from: '#A855F7', to: '#7C3AED' },
-  { from: '#F59E0B', to: '#D97706' },
+  { from: '#FFB800', to: '#D97706' },
 ]
 
 const STATUS_COLOR: Record<string, string> = {
@@ -206,12 +206,12 @@ export default function ClientesTable({ clientes }: { clientes: Cliente[] }) {
                   height: 52,
                   alignItems: 'center',
                   borderBottom: '1px solid var(--border)',
-                  background: 'var(--surface-1)',
+                  background: 'transparent',
                   textDecoration: 'none',
                   transition: 'background 100ms ease',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'var(--surface-2)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'var(--surface-1)')}
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.025)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
               >
                 {/* Empresa */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 11 }}>
@@ -238,6 +238,7 @@ export default function ClientesTable({ clientes }: { clientes: Cliente[] }) {
                   <span style={{
                     width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
                     background: statusColor,
+                    boxShadow: `0 0 6px ${statusColor}`,
                   }} />
                   <span style={{ fontSize: 12, color: 'var(--text-2)' }}>{STATUS_LABEL[c.estado]}</span>
                   {alertasCriticas > 0 && (
@@ -296,6 +297,7 @@ export default function ClientesTable({ clientes }: { clientes: Cliente[] }) {
                       height: '100%', width: `${c.healthScore}%`,
                       background: hColor, borderRadius: 2,
                       transition: 'width 400ms ease',
+                      boxShadow: `0 0 6px ${hColor}88`,
                     }} />
                   </div>
                   <span style={{ fontSize: 13, fontWeight: 600, color: hColor, fontVariantNumeric: 'tabular-nums', minWidth: 24, textAlign: 'right' }}>

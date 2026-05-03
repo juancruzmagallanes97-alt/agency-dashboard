@@ -1,80 +1,144 @@
 @import "tailwindcss";
 
+/* ─── DESIGN TOKENS ──────────────────────────────────────────────────────── */
+
 :root {
-  /* Surfaces — Negro absoluto */
+  /* Fondos — negro puro */
   --bg:        #000000;
-  --surface-1: #0E0E0E;
-  --surface-2: #161616;
+  --surface-1: #0A0A0A;
+  --surface-2: #111111;
+  --surface-3: #1A1A1A;
 
-  /* Borders */
-  --border:    #1C1C1C;
-  --border-2:  #242424;
+  /* Borders — blanco muy sutil */
+  --border:   rgba(255, 255, 255, 0.07);
+  --border-2: rgba(255, 255, 255, 0.12);
 
-  /* Text */
-  --text-1:    #FFFFFF;
-  --text-2:    #E0E0E0;
-  --text-3:    #888888;
+  /* Text — jerarquía clara */
+  --text-1: #FFFFFF;
+  --text-2: #A0A0A0;
+  --text-3: #555555;
 
-  /* Status rings — client avatar borders */
+  /* Acento */
+  --accent:      #4B7BF5;
+  --accent-dim:  rgba(75, 123, 245, 0.10);
+  --accent-glow: rgba(75, 123, 245, 0.25);
+  --accent-2:     #00D4FF;
+  --accent-2-dim: rgba(0, 212, 255, 0.08);
+
+  /* Status */
   --status-estable:  #22C55E;
   --status-atencion: #EAB308;
   --status-riesgo:   #F97316;
   --status-critico:  #EF4444;
 
-  /* Accent */
-  --accent:    #2383E2;
-  --accent-bg: rgba(35, 131, 226, 0.12);
-
   /* Semantic */
-  --critical:        #F87171;
-  --critical-bg:     rgba(248, 113, 113, 0.1);
-  --critical-border: rgba(248, 113, 113, 0.25);
-  --warning:         #FBBF24;
-  --warning-bg:      rgba(251, 191, 36, 0.1);
-  --warning-border:  rgba(251, 191, 36, 0.25);
-  --opportunity:     #34D399;
-  --opportunity-bg:  rgba(52, 211, 153, 0.1);
-  --opportunity-border: rgba(52, 211, 153, 0.25);
+  --critical:           #EF4444;
+  --critical-bg:        rgba(239, 68,  68, 0.08);
+  --critical-border:    rgba(239, 68,  68, 0.20);
+  --warning:            #EAB308;
+  --warning-bg:         rgba(234,179,   8, 0.08);
+  --warning-border:     rgba(234,179,   8, 0.20);
+  --opportunity:        #22C55E;
+  --opportunity-bg:     rgba( 34,197,  94, 0.08);
+  --opportunity-border: rgba( 34,197,  94, 0.20);
 
-  /* Font */
-  --font-sans:      var(--font-montserrat), ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-primary:   600;
-  --font-secondary: 400;
-
-  /* Legacy aliases — remove after pages are migrated in 01-03 */
+  /* Legacy aliases */
   --s1: var(--surface-1);
   --s2: var(--surface-2);
-  --s3: var(--surface-2);
+  --s3: var(--surface-3);
   --border2: var(--border-2);
-  --txt: var(--text-1);
+  --txt:  var(--text-1);
   --txt2: var(--text-2);
   --txt3: var(--text-3);
   --green: var(--opportunity);
-  --red: var(--critical);
+  --red:   var(--critical);
   --amber: var(--warning);
+  --accent-bg: var(--accent-dim);
+
+  /* Font */
+  --font-sans: var(--font-montserrat), ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
 
+/* ─── RESET ──────────────────────────────────────────────────────────────── */
+
 * { box-sizing: border-box; }
+
+/* ─── BODY ───────────────────────────────────────────────────────────────── */
 
 body {
   background: var(--bg);
   color: var(--text-1);
   font-family: var(--font-sans);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Texto secundario — peso normal */
-.text-secondary, p, span, td, th, label, small {
-  font-weight: 400;
-}
+h1, h2, h3, h4, h5, h6, strong, b { font-weight: 600; }
 
 ::selection {
-  background: rgba(35, 131, 226, 0.15);
+  background: rgba(75, 123, 245, 0.25);
+  color: #fff;
 }
+
+/* ─── SCROLLBAR ──────────────────────────────────────────────────────────── */
 
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+/* ─── ANIMACIONES ────────────────────────────────────────────────────────── */
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.4; transform: scale(0.75); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ─── UTILIDADES ─────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.card-hover {
+  transition: border-color 150ms ease, background 150ms ease;
+}
+.card-hover:hover {
+  border-color: var(--border-2);
+  background: var(--surface-2);
+}
+
+.status-dot-live {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--status-estable);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.fade-in-up {
+  animation: fade-in-up 300ms ease both;
+}
+
+.hover-row {
+  transition: background 120ms ease;
+}
+.hover-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}

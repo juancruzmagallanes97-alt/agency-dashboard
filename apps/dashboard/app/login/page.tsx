@@ -232,8 +232,6 @@ function submitStyle(loading: boolean): React.CSSProperties {
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function LoginPage() {
-  const [tab, setTab] = useState<'login' | 'register'>('login')
-
   return (
     <div style={{
       display: 'flex', minHeight: '100vh',
@@ -312,46 +310,17 @@ export default function LoginPage() {
         flexShrink: 0,
       }}>
         <div style={{ width: '100%', maxWidth: 360 }}>
-          {/* Tabs */}
-          <div style={{
-            display: 'flex', borderRadius: 9, padding: 4,
-            background: 'var(--surface-1)', border: '1px solid var(--border)',
-            marginBottom: 28,
-          }}>
-            {([
-              { key: 'login',    label: 'Acceder'        },
-              { key: 'register', label: 'Registrar empresa' },
-            ] as const).map(({ key, label }) => (
-              <button
-                key={key}
-                onClick={() => setTab(key)}
-                style={{
-                  flex: 1, height: 32, borderRadius: 6, fontSize: 12, fontWeight: 500,
-                  border: 'none', cursor: 'pointer',
-                  background: tab === key ? 'var(--surface-2)' : 'transparent',
-                  color:      tab === key ? 'var(--text-1)'    : 'var(--text-3)',
-                  transition: 'all 120ms ease',
-                }}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
           {/* Heading */}
-          <div style={{ marginBottom: 24 }}>
+          <div style={{ marginBottom: 28 }}>
             <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-1)', margin: 0 }}>
-              {tab === 'login' ? 'Accedé a tu panel' : 'Empezá gratis'}
+              Accedé a tu panel
             </h2>
             <p style={{ fontSize: 13, color: 'var(--text-3)', marginTop: 6 }}>
-              {tab === 'login'
-                ? 'Ingresá con tus credenciales de administrador.'
-                : 'Te contactamos en menos de 24 horas.'}
+              Ingresá con tus credenciales de administrador.
             </p>
           </div>
 
-          {/* Form */}
-          {tab === 'login' ? <LoginForm /> : <RegisterForm />}
+          <LoginForm />
         </div>
       </div>
     </div>

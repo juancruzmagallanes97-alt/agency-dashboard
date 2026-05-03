@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Montserrat } from 'next/font/google'
 import "./globals.css"
-import Sidebar from "@/components/Sidebar"
+import AppShell from "./AppShell"
 import { getClientes } from "@/lib/services/clients"
 
 const montserrat = Montserrat({
@@ -22,15 +22,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="es" className={montserrat.variable}>
       <body style={{ background: 'var(--bg)' }}>
-        <div className="flex min-h-screen">
-          <Sidebar clientes={clientes} />
-          <main
-            className="flex-1 min-h-screen overflow-y-auto"
-            style={{ background: 'var(--bg)', marginLeft: 240, padding: '32px 40px' }}
-          >
-            {children}
-          </main>
-        </div>
+        <AppShell clientes={clientes}>
+          {children}
+        </AppShell>
       </body>
     </html>
   )
