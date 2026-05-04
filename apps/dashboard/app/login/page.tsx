@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
-import { Loader2, CheckCircle2, Zap, BarChart3, MessageSquare, Bot } from 'lucide-react'
+import { Loader2, CheckCircle2, Zap, BarChart3, MessageSquare, Bot, Eye, EyeOff } from 'lucide-react'
 
 // ─── Left panel — value props ─────────────────────────────────────────────────
 
@@ -133,8 +133,9 @@ function RegisterForm() {
 // ─── Login form ───────────────────────────────────────────────────────────────
 
 function LoginForm() {
-  const [loading, setLoading] = useState(false)
-  const [error, setError]     = useState('')
+  const [loading, setLoading]       = useState(false)
+  const [error, setError]           = useState('')
+  const [showPassword, setShowPass] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -169,17 +170,35 @@ function LoginForm() {
       {([
         { name: 'email',    label: 'Email',       type: 'email',    auto: 'email'            },
         { name: 'password', label: 'Contraseña',  type: 'password', auto: 'current-password' },
-      ] as const).map(({ name, label, type, auto }) => (
+      ] as const).map(({ name, label, auto }) => (
         <div key={name} style={{ marginBottom: 16 }}>
           <label style={{ display: 'block', fontSize: 11, fontWeight: 500, color: 'var(--text-3)', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.07em' }}>
             {label}
           </label>
-          <input
-            name={name} type={type} required autoComplete={auto}
-            style={inputStyle}
-            onFocus={focusInput}
-            onBlur={blurInput}
-          />
+          <div style={{ position: 'relative' }}>
+            <input
+              name={name}
+              type={name === 'password' ? (showPassword ? 'text' : 'password') : 'email'}
+              required
+              autoComplete={auto}
+              style={{ ...inputStyle, paddingRight: name === 'password' ? 38 : 12 }}
+              onFocus={focusInput}
+              onBlur={blurInput}
+            />
+            {name === 'password' && (
+              <button
+                type="button"
+                onClick={() => setShowPass(v => !v)}
+                style={{
+                  position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
+                  background: 'none', border: 'none', cursor: 'pointer',
+                  color: 'var(--text-3)', display: 'flex', alignItems: 'center', padding: 0,
+                }}
+              >
+                {showPassword ? <EyeOff style={{ width: 15, height: 15 }} /> : <Eye style={{ width: 15, height: 15 }} />}
+              </button>
+            )}
+          </div>
         </div>
       ))}
 

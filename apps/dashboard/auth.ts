@@ -35,10 +35,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const password = credentials.password as string
 
         // Admin check (env vars)
+        console.log('[auth] email received:', email)
+        console.log('[auth] ADMIN_EMAIL env:', process.env.ADMIN_EMAIL)
+        console.log('[auth] emails match:', email === process.env.ADMIN_EMAIL)
         if (email === process.env.ADMIN_EMAIL) {
-          const hash = process.env.ADMIN_PASSWORD_HASH
+          const raw  = process.env.ADMIN_PASSWORD_HASH ?? ''
+          const hash = raw.replace(/^['"]|['"]$/g, '')
+          console.log('[auth] hash length:', hash.length)
+          console.log('[auth] hash starts with:', hash.substring(0, 7))
           if (!hash) return null
           const valid = await bcryptjs.compare(password, hash)
+          console.log('[auth] bcrypt valid:', valid)
           if (!valid) return null
           return { id: 'admin', email, name: 'Sr Smith', role: 'admin' }
         }
