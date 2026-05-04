@@ -1,0 +1,17 @@
+import type { DefaultSession } from "next-auth"
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      role: 'admin' | 'client'
+      clienteId?: string
+    } & DefaultSession["user"]
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    role: 'admin' | 'client'
+    clienteId?: string
+  }
+}

@@ -251,11 +251,11 @@ export default function Sidebar({ clientes }: { clientes: Cliente[] }) {
               fontSize: 13, fontWeight: 800, color: '#fff', flexShrink: 0,
               boxShadow: '0 0 12px var(--accent-glow)',
             }}>
-              JC
+              SS
             </div>
             <div style={{ overflow: 'hidden' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-1)', whiteSpace: 'nowrap' }}>
-                Juan Cruz
+                Sr Smith
               </div>
               <div style={{ fontSize: 11, color: 'var(--text-2)', display: 'flex', alignItems: 'center', gap: 5, marginTop: 2 }}>
                 <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--status-estable)', display: 'inline-block', flexShrink: 0, boxShadow: '0 0 4px var(--status-estable)' }} />
@@ -275,7 +275,7 @@ export default function Sidebar({ clientes }: { clientes: Cliente[] }) {
             fontSize: 11, fontWeight: 800, color: '#fff',
             boxShadow: '0 0 10px var(--accent-glow)',
           }}>
-            JC
+            SS
           </div>
         </div>
       )}
